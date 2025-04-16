@@ -62,4 +62,44 @@ function App() {
       <form onSubmit={formik.handleSubmit}>
         <label>Type de paiement</label>
         <select
-          name="
+          name="type_payment"
+          value={formik.values.type_payment}
+          onChange={formik.handleChange}
+        >
+          <option value="TRANSFER">Transfert</option>
+          <option value="CASH_OUT">Cash Out</option>
+          <option value="CASH_IN">Cash In</option>
+          <option value="PAYMENT">Payment</option>
+          <option value="DEBIT">Debit</option>
+        </select>
+
+        {["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"].map((field) => (
+          <div key={field}>
+            <label className="capitalize">{field}</label>
+            <input
+              type="number"
+              name={field}
+              value={formik.values[field]}
+              onChange={formik.handleChange}
+            />
+            {formik.touched[field] && formik.errors[field] && (
+              <div className="error">{formik.errors[field]}</div>
+            )}
+          </div>
+        ))}
+
+        <button type="submit" disabled={loading || !formik.isValid}>
+          {loading ? "Chargement..." : "Prédire"}
+        </button>
+      </form>
+
+      {prediction !== null && (
+        <div className={`result ${prediction === 1 ? "warning" : "success"}`}>
+          {prediction === 1 ? "⚠️ Fraude détectée" : "✅ Pas de fraude"}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
