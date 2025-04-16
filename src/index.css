@@ -1,3 +1,6 @@
+
+
+
 /* Arrière-plan de toute la page */
 body {
   margin: 0;
@@ -95,6 +98,48 @@ button:hover {
 .result .no-fraud {
   color: #28a745;
 }
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+  transition: all 0.3s ease-in-out;
+}
+
+input:hover, select:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+.result {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.header {
+  text-align: center;
+  background: rgba(255,255,255,0.8);
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  border-radius: 12px 12px 0 0;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  input, select, button {
+    font-size: 16px;
+  }
+}
+
 
 /* Animation fadeIn */
 @keyframes fadeIn {
