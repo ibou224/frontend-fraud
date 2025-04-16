@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import './App.css'; // Importation du fichier CSS classique
+import "./index.css"; // On garde ça pour le style
 
 function App() {
   const [prediction, setPrediction] = useState(null);
@@ -56,65 +56,10 @@ function App() {
   });
 
   return (
-    <div className="app-container">
-      <div className="form-container">
-        <h1>Détection de Fraude</h1>
+    <div className="container">
+      <h1>Détection de Fraude</h1>
 
-        <form onSubmit={formik.handleSubmit} className="form">
-          <div className="form-group">
-            <label className="label">Type de paiement</label>
-            <select
-              name="type_payment"
-              value={formik.values.type_payment}
-              onChange={formik.handleChange}
-              className="input"
-            >
-              <option value="TRANSFER">Transfert</option>
-              <option value="CASH_OUT">Cash Out</option>
-              <option value="CASH_IN">Cash In</option>
-              <option value="PAYMENT">Payment</option>
-              <option value="DEBIT">Debit</option>
-            </select>
-          </div>
-
-          {["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"].map((field) => (
-            <div key={field} className="form-group">
-              <label className="label">{field}</label>
-              <input
-                type="number"
-                name={field}
-                value={formik.values[field]}
-                onChange={formik.handleChange}
-                className="input"
-              />
-              {formik.touched[field] && formik.errors[field] && (
-                <p className="error-message">{formik.errors[field]}</p>
-              )}
-            </div>
-          ))}
-
-          <button
-            type="submit"
-            disabled={loading || !formik.isValid}
-            className={`submit-button ${loading || !formik.isValid ? "disabled" : ""}`}
-          >
-            {loading ? "Chargement..." : "Prédire"}
-          </button>
-        </form>
-
-        {prediction !== null && (
-          <div className="result">
-            Résultat :{" "}
-            {prediction === 1 ? (
-              <span className="fraud">⚠️ Fraude détectée</span>
-            ) : (
-              <span className="no-fraud">✅ Pas de fraude</span>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-export default App;
+      <form onSubmit={formik.handleSubmit}>
+        <label>Type de paiement</label>
+        <select
+          name="
