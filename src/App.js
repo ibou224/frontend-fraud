@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import "./index.css";  // Ou App.css si tu l'utilises
+import './App.css'; // Importation du fichier CSS classique
 
 function App() {
   const [prediction, setPrediction] = useState(null);
@@ -56,18 +56,18 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-lg">
-        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">Détection de Fraude</h1>
+    <div className="app-container">
+      <div className="form-container">
+        <h1>Détection de Fraude</h1>
 
-        <form onSubmit={formik.handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Type de paiement</label>
+        <form onSubmit={formik.handleSubmit} className="form">
+          <div className="form-group">
+            <label className="label">Type de paiement</label>
             <select
               name="type_payment"
               value={formik.values.type_payment}
               onChange={formik.handleChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+              className="input"
             >
               <option value="TRANSFER">Transfert</option>
               <option value="CASH_OUT">Cash Out</option>
@@ -78,17 +78,17 @@ function App() {
           </div>
 
           {["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"].map((field) => (
-            <div key={field}>
-              <label className="block text-sm font-medium text-gray-700 capitalize">{field}</label>
+            <div key={field} className="form-group">
+              <label className="label">{field}</label>
               <input
                 type="number"
                 name={field}
                 value={formik.values[field]}
                 onChange={formik.handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+                className="input"
               />
               {formik.touched[field] && formik.errors[field] && (
-                <p className="text-red-600 text-sm mt-1">{formik.errors[field]}</p>
+                <p className="error-message">{formik.errors[field]}</p>
               )}
             </div>
           ))}
@@ -96,23 +96,19 @@ function App() {
           <button
             type="submit"
             disabled={loading || !formik.isValid}
-            className={`w-full py-2 px-4 rounded-md text-white font-semibold transition ${
-              loading || !formik.isValid
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
-            }`}
+            className={`submit-button ${loading || !formik.isValid ? "disabled" : ""}`}
           >
             {loading ? "Chargement..." : "Prédire"}
           </button>
         </form>
 
         {prediction !== null && (
-          <div className="mt-6 text-center text-lg font-medium">
+          <div className="result">
             Résultat :{" "}
             {prediction === 1 ? (
-              <span className="text-red-600">⚠️ Fraude détectée</span>
+              <span className="fraud">⚠️ Fraude détectée</span>
             ) : (
-              <span className="text-green-600">✅ Pas de fraude</span>
+              <span className="no-fraud">✅ Pas de fraude</span>
             )}
           </div>
         )}
