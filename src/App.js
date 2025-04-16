@@ -18,7 +18,7 @@ function App() {
     },
     validationSchema: Yup.object({
       step: Yup.number().min(0).required("Obligatoire"),
-      amount: Yup.number().min(0, "Doit être ≥ 0").required("Obligatoire"),
+      amount: Yup.number().min(0).required("Obligatoire"),
       oldbalanceOrg: Yup.number().min(0).required("Obligatoire"),
       newbalanceOrig: Yup.number().min(0).required("Obligatoire"),
       oldbalanceDest: Yup.number().min(0).required("Obligatoire"),
@@ -55,52 +55,67 @@ function App() {
   });
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "600px", margin: "auto" }}>
-      <h1 className="text-2xl font-bold text-center text-blue-700">Détection de Fraude</h1>
-      <form onSubmit={formik.handleSubmit}>
-        <label>Type de paiement:</label>
-        <select
-          name="type_payment"
-          value={formik.values.type_payment}
-          onChange={formik.handleChange}
-        >
-          <option value="TRANSFER">Transfert</option>
-          <option value="CASH_OUT">Cash Out</option>
-          <option value="CASH_IN">Cash In</option>
-          <option value="PAYMENT">Payment</option>
-          <option value="DEBIT">Debit</option>
-        </select>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-lg">
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">Détection de Fraude</h1>
 
-        {["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"].map((field) => (
-          <div key={field} style={{ marginTop: "1rem" }}>
-            <label style={{ display: "block" }}>{field}:</label>
-            <input
-              type="number"
-              name={field}
-              value={formik.values[field]}
+        <form onSubmit={formik.handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Type de paiement</label>
+            <select
+              name="type_payment"
+              value={formik.values.type_payment}
               onChange={formik.handleChange}
-              style={{ padding: "0.5rem", width: "100%" }}
-            />
-            {formik.touched[field] && formik.errors[field] && (
-              <div style={{ color: "red", marginTop: "0.25rem" }}>{formik.errors[field]}</div>
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="TRANSFER">Transfert</option>
+              <option value="CASH_OUT">Cash Out</option>
+              <option value="CASH_IN">Cash In</option>
+              <option value="PAYMENT">Payment</option>
+              <option value="DEBIT">Debit</option>
+            </select>
+          </div>
+
+          {["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"].map((field) => (
+            <div key={field}>
+              <label className="block text-sm font-medium text-gray-700 capitalize">{field}</label>
+              <input
+                type="number"
+                name={field}
+                value={formik.values[field]}
+                onChange={formik.handleChange}
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+              {formik.touched[field] && formik.errors[field] && (
+                <p className="text-red-600 text-sm mt-1">{formik.errors[field]}</p>
+              )}
+            </div>
+          ))}
+
+          <button
+            type="submit"
+            disabled={loading || !formik.isValid}
+            className={`w-full py-2 px-4 rounded-md text-white font-semibold transition ${
+              loading || !formik.isValid
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
+            }`}
+          >
+            {loading ? "Chargement..." : "Prédire"}
+          </button>
+        </form>
+
+        {prediction !== null && (
+          <div className="mt-6 text-center text-lg font-medium">
+            Résultat :{" "}
+            {prediction === 1 ? (
+              <span className="text-red-600">⚠️ Fraude détectée</span>
+            ) : (
+              <span className="text-green-600">✅ Pas de fraude</span>
             )}
           </div>
-        ))}
-
-        <button
-          type="submit"
-          disabled={loading || !formik.isValid}
-          style={{ marginTop: "1rem", padding: "0.75rem", background: "#2C3E50", color: "#fff" }}
-        >
-          {loading ? "Chargement..." : "Prédire"}
-        </button>
-      </form>
-
-      {prediction !== null && (
-        <h2 style={{ marginTop: "2rem" }}>
-          Résultat : {prediction === 1 ? "⚠️ Fraude" : "✅ Pas de fraude"}
-        </h2>
-      )}
+        )}
+      </div>
     </div>
   );
 }
