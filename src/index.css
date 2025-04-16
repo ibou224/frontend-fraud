@@ -1,8 +1,9 @@
-/* Arrière-plan global */
+/* ----- Général ----- */
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f7fa;
+  background: linear-gradient(to bottom right, #f0f4f8, #ffffff);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -10,95 +11,103 @@ body {
   padding: 20px;
 }
 
-/* Conteneur */
+/* ----- Conteneur ----- */
 .container {
   background-color: #ffffff;
-  padding: 50px 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px 35px;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 650px;
+  max-width: 620px;
   box-sizing: border-box;
-  animation: fadeSlideIn 0.4s ease-out;
+  animation: fadeIn 0.6s ease-out;
 }
 
-/* Titre */
+/* ----- Titre ----- */
 .container h1 {
-  font-size: 30px;
-  color: #2d3748;
   text-align: center;
-  margin-bottom: 35px;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 30px;
 }
 
-/* Étiquettes */
+/* ----- Étiquettes ----- */
 label {
-  font-weight: 500;
-  color: #4a5568;
   display: block;
-  margin-bottom: 10px;
-  margin-top: 28px;
-  font-size: 16px;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #444;
 }
 
-/* Champs de saisie */
+/* ----- Champs de formulaire ----- */
 input, select {
   width: 100%;
-  padding: 16px 18px;
-  border: 1px solid #cbd5e0;
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
   border-radius: 10px;
-  background-color: #f7fafc;
-  font-size: 17px;
+  box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
 input:focus, select:focus {
-  border-color: #3182ce;
-  background-color: #ffffff;
+  border-color: #0077cc;
   outline: none;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.1);
 }
 
-/* Bouton */
+/* ----- Bouton ----- */
 button {
+  margin-top: 30px;
   width: 100%;
-  padding: 15px;
-  background-color: #2b6cb0;
-  color: white;
+  padding: 14px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #0077cc;
   border: none;
   border-radius: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 40px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #2c5282;
+  background-color: #005fa3;
+  transform: translateY(-2px);
 }
 
-/* Résultat */
+/* ----- Messages d'erreur ----- */
+.error {
+  color: #d93025;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* ----- Résultat prédiction ----- */
 .result {
-  margin-top: 30px;
+  margin-top: 25px;
   text-align: center;
-  font-size: 19px;
-  font-weight: bold;
-  opacity: 0;
-  animation: fadeSlideIn 0.4s ease-out forwards;
+  font-size: 18px;
+  font-weight: 600;
+  animation: fadeIn 0.4s ease-out;
 }
 
 .result.fraud {
-  color: #e53e3e;
+  color: #e53935;
 }
 
 .result.no-fraud {
-  color: #38a169;
+  color: #43a047;
 }
 
-/* Animation douce */
-@keyframes fadeSlideIn {
+/* ----- Animation ----- */
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -106,18 +115,18 @@ button:hover {
   }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* ----- Responsive ----- */
+@media (max-width: 600px) {
   .container {
-    padding: 35px 25px;
-  }
-
-  .container h1 {
-    font-size: 24px;
+    padding: 25px 20px;
   }
 
   input, select, button {
-    font-size: 16px;
-    padding: 14px;
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .container h1 {
+    font-size: 22px;
   }
 }
