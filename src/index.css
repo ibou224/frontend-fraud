@@ -1,132 +1,135 @@
-/* ----- Général ----- */
-body {
+/* Reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to bottom right, #f0f4f8, #ffffff);
+  background: linear-gradient(135deg, #2C3E50, #3498DB, #9b59b6);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  color: #2C3E50;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
 }
 
-/* ----- Conteneur ----- */
+/* Animation de fond */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Conteneur principal */
 .container {
-  background-color: #ffffff;
-  padding: 40px 35px;
-  border-radius: 14px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+  background-color: #ffffffcc;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
   width: 100%;
-  max-width: 620px;
-  box-sizing: border-box;
-  animation: fadeIn 0.6s ease-out;
+  animation: fadeIn 0.5s ease-in-out;
+  backdrop-filter: blur(5px);
 }
 
-/* ----- Titre ----- */
+/* Titre */
 .container h1 {
-  text-align: center;
   font-size: 28px;
-  color: #333;
-  margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2C3E50;
 }
 
-/* ----- Étiquettes ----- */
+/* Étiquettes */
 label {
   display: block;
-  margin-top: 18px;
+  font-size: 15px;
   margin-bottom: 6px;
-  font-weight: 500;
-  color: #444;
+  color: #34495E;
 }
 
-/* ----- Champs de formulaire ----- */
-input, select {
+/* Champs */
+input,
+select {
   width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
+  padding: 10px;
+  border: 2px solid #dcdde1;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input:focus, select:focus {
-  border-color: #0077cc;
+input:focus,
+select:focus {
+  border-color: #9b59b6;
+  box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.2);
   outline: none;
-  background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.1);
 }
 
-/* ----- Bouton ----- */
+/* Bouton */
 button {
-  margin-top: 30px;
-  width: 100%;
+  background: linear-gradient(to right, #e74c3c, #e67e22);
+  color: white;
   padding: 14px;
-  font-size: 17px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #0077cc;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  width: 100%;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-  background-color: #005fa3;
-  transform: translateY(-2px);
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* ----- Messages d'erreur ----- */
-.error {
-  color: #d93025;
-  font-size: 14px;
-  margin-top: 4px;
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
 }
 
-/* ----- Résultat prédiction ----- */
+/* Résultat */
 .result {
-  margin-top: 25px;
   text-align: center;
   font-size: 18px;
-  font-weight: 600;
-  animation: fadeIn 0.4s ease-out;
+  margin-top: 1.5rem;
+  padding: 12px;
+  border-radius: 8px;
 }
 
-.result.fraud {
-  color: #e53935;
+.result.success {
+  background-color: #d4edda;
+  color: #27AE60;
 }
 
-.result.no-fraud {
-  color: #43a047;
+.result.warning {
+  background-color: #f8d7da;
+  color: #E74C3C;
 }
 
-/* ----- Animation ----- */
+/* Erreurs */
+.error {
+  color: #E74C3C;
+  font-size: 13px;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Apparition */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* ----- Responsive ----- */
-@media (max-width: 600px) {
-  .container {
-    padding: 25px 20px;
-  }
-
-  input, select, button {
-    font-size: 15px;
-    padding: 12px;
-  }
-
-  .container h1 {
-    font-size: 22px;
   }
 }
