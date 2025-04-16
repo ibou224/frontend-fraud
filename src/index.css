@@ -1,3 +1,72 @@
+/* Animation de fondu + montée */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation sur le titre */
+.container h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease-out;
+  color: #1a237e;
+}
+
+/* Animation bouton */
+button {
+  padding: 12px 20px;
+  background-color: #1a73e8;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Effet au survol */
+button:hover {
+  background-color: #0c47a1;
+  transform: scale(1.05);
+}
+
+/* Effet quand désactivé */
+button:disabled {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+}
+
+/* Résultat */
+.result {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.result.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #66bb6a;
+}
+
+.result.warning {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef5350;
+}
+
+
 /* Reset */
 * {
   margin: 0;
