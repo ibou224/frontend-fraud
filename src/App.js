@@ -71,7 +71,7 @@ function App() {
           <option value="DEBIT">Debit</option>
         </select>
 
-        {"step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"].map((field) => (
+        {["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"].map((field) => (
           <div key={field} style={{ marginTop: "1rem" }}>
             <label style={{ display: "block" }}>{field}:</label>
             <input
