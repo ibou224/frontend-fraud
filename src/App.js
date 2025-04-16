@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import "./index.css"; // On garde ça pour le style
+import "./index.css";
 
 function App() {
   const [prediction, setPrediction] = useState(null);
@@ -60,22 +60,24 @@ function App() {
       <h1>Détection de Fraude</h1>
 
       <form onSubmit={formik.handleSubmit}>
-        <label>Type de paiement</label>
-        <select
-          name="type_payment"
-          value={formik.values.type_payment}
-          onChange={formik.handleChange}
-        >
-          <option value="TRANSFER">Transfert</option>
-          <option value="CASH_OUT">Cash Out</option>
-          <option value="CASH_IN">Cash In</option>
-          <option value="PAYMENT">Payment</option>
-          <option value="DEBIT">Debit</option>
-        </select>
+        <div>
+          <label>Type de paiement</label>
+          <select
+            name="type_payment"
+            value={formik.values.type_payment}
+            onChange={formik.handleChange}
+          >
+            <option value="TRANSFER">Transfert</option>
+            <option value="CASH_OUT">Cash Out</option>
+            <option value="CASH_IN">Cash In</option>
+            <option value="PAYMENT">Payment</option>
+            <option value="DEBIT">Debit</option>
+          </select>
+        </div>
 
         {["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"].map((field) => (
           <div key={field}>
-            <label className="capitalize">{field}</label>
+            <label>{field}</label>
             <input
               type="number"
               name={field}
@@ -83,7 +85,7 @@ function App() {
               onChange={formik.handleChange}
             />
             {formik.touched[field] && formik.errors[field] && (
-              <div className="error">{formik.errors[field]}</div>
+              <p className="error">{formik.errors[field]}</p>
             )}
           </div>
         ))}
@@ -94,8 +96,13 @@ function App() {
       </form>
 
       {prediction !== null && (
-        <div className={`result ${prediction === 1 ? "warning" : "success"}`}>
-          {prediction === 1 ? "⚠️ Fraude détectée" : "✅ Pas de fraude"}
+        <div className="result">
+          Résultat :{" "}
+          {prediction === 1 ? (
+            <span className="fraud">⚠️ Fraude détectée</span>
+          ) : (
+            <span className="no-fraud">✅ Pas de fraude</span>
+          )}
         </div>
       )}
     </div>
