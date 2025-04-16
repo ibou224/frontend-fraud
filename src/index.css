@@ -7,6 +7,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* Empêche le défilement vertical */
 }
 
 /* Conteneur principal */
@@ -18,6 +19,16 @@ body {
   width: 90%;
   max-width: 600px;
   animation: fadeIn 0.6s ease-out;
+}
+
+/* Animation pour faire apparaître les champs */
+.container input,
+.container select,
+.container button {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.3s;
 }
 
 /* Titre principal */
@@ -37,13 +48,21 @@ input, select {
   border-radius: 10px;
   box-sizing: border-box;
   font-size: 16px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 input:focus, select:focus {
   border-color: #007bff;
   outline: none;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Effet sur hover des champs */
+input:hover, select:hover {
+  background-color: #f7fafc;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
 /* Étiquettes */
@@ -56,7 +75,7 @@ label {
 button {
   width: 100%;
   padding: 12px;
-  background-color: #007bff;
+  background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
   border: none;
   border-radius: 10px;
@@ -64,19 +83,25 @@ button {
   font-weight: bold;
   cursor: pointer;
   margin-top: 15px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 15px rgba(0, 123, 255, 0.5);
 }
 
 button:hover {
-  background-color: #0056b3;
-  transform: scale(1.02);
+  background: linear-gradient(135deg, #0056b3, #007bff);
+  box-shadow: 0px 6px 20px rgba(0, 123, 255, 0.8);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
 }
 
-/* Message d’erreur */
-.error {
-  color: #dc3545;
-  font-size: 14px;
-  margin-top: 4px;
+/* Animation de chargement */
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
 }
 
 /* Résultat de la prédiction */
@@ -85,7 +110,9 @@ button:hover {
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-  animation: fadeIn 0.4s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
 .result .fraud {
@@ -96,22 +123,30 @@ button:hover {
   color: #28a745;
 }
 
-/* Animation fadeIn */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animation de fade-in */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* En-tête */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header avec effet */
 .header {
   text-align: center;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255,255,255,0.8);
   padding: 20px;
   border-bottom: 1px solid #eee;
   border-radius: 12px 12px 0 0;
@@ -124,7 +159,11 @@ button:hover {
     padding: 25px 20px;
   }
 
-  input, select, button {
+  button {
     font-size: 16px;
+  }
+
+  input, select {
+    font-size: 14px;
   }
 }
