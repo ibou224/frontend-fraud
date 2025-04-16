@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import "./index.css";  // Ou App.css si tu l'utilises
 
 function App() {
   const [prediction, setPrediction] = useState(null);
