@@ -1,76 +1,120 @@
-/* Global styles */
+/* Arrière-plan de toute la page */
 body {
-  font-family: 'Arial', sans-serif;
   margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #6e7fdb, #8e9eab);
-  color: #333;
-}
-
-h1 {
-  color: #fff;
-  font-size: 2.5rem;
-  text-align: center;
-}
-
-.container {
-  width: 100%;
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-form {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #d9e4f5);
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-label {
-  font-weight: bold;
-  margin-bottom: 5px;
+/* Conteneur principal */
+.container {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+  animation: fadeIn 0.6s ease-out;
 }
 
+/* Titre principal */
+.container h1 {
+  font-size: 28px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Champs du formulaire */
 input, select {
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
-.error {
-  color: #ff4d4d;
-  font-size: 0.875rem;
+input:focus, select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
 }
 
+/* Étiquettes */
+label {
+  font-weight: 500;
+  color: #444;
+}
+
+/* Bouton de soumission */
 button {
+  width: 100%;
   padding: 12px;
-  background-color: #1e88e5;
+  background-color: #007bff;
   color: white;
-  font-size: 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:disabled {
-  background-color: #ddd;
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
 }
 
+/* Message d’erreur */
+.error {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Résultat de la prédiction */
 .result {
   margin-top: 20px;
   text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  animation: fadeIn 0.4s ease;
 }
 
-.fraud {
-  color: #ff4d4d;
-  font-size: 1.25rem;
+.result .fraud {
+  color: #dc3545;
 }
 
-.no-fraud {
-  color: #4caf50;
-  font-size: 1.25rem;
+.result .no-fraud {
+  color: #28a745;
+}
+
+/* Animation fadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 25px 20px;
+  }
+
+  button {
+    font-size: 16px;
+  }
 }
