@@ -2,12 +2,12 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #E2E8F0, #EDF2F7); /* Dégradé léger de bleu clair */
+  background: linear-gradient(135deg, #E2E8F0, #EDF2F7);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  padding: 20px;
 }
 
 /* Conteneur principal */
@@ -16,9 +16,10 @@ body {
   padding: 40px 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  width: 90%;
+  width: 100%;
   max-width: 600px;
   animation: fadeIn 0.6s ease-out;
+  box-sizing: border-box;
 }
 
 /* Titre principal */
@@ -34,24 +35,23 @@ input, select {
   width: 100%;
   padding: 12px 14px;
   margin-top: 6px;
-  border: 1px solid #E2E8F0; /* Gris clair pour la bordure */
+  border: 1px solid #E2E8F0;
   border-radius: 10px;
   box-sizing: border-box;
   font-size: 16px;
-  background-color: #F7FAFC; /* Gris très clair */
+  background-color: #F7FAFC;
   transition: all 0.3s ease;
 }
 
 input:focus, select:focus {
-  border-color: #3182CE; /* Bleu vif */
+  border-color: #3182CE;
   outline: none;
   box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
 }
 
-/* Effet sur hover des champs */
 input:hover, select:hover {
-  background-color: #E2E8F0; /* Gris clair */
-  border-color: #3182CE; /* Bleu vif */
+  background-color: #E2E8F0;
+  border-color: #3182CE;
 }
 
 /* Étiquettes */
@@ -64,7 +64,7 @@ label {
 button {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #4299E1, #2B6CB0); /* Dégradé bleu */
+  background: linear-gradient(135deg, #4299E1, #2B6CB0);
   color: white;
   border: none;
   border-radius: 10px;
@@ -77,20 +77,9 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(135deg, #2B6CB0, #4299E1); /* Changement du dégradé au survol */
-  box-shadow: 0px 6px 20px rgba(66, 153, 225, 0.8);
+  background: linear-gradient(135deg, #2B6CB0, #4299E1);
   transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-}
-
-/* Animation de chargement */
-.loader {
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #007bff;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
+  box-shadow: 0px 6px 20px rgba(66, 153, 225, 0.8);
 }
 
 /* Résultat de la prédiction */
@@ -105,14 +94,14 @@ button:hover {
 }
 
 .result .fraud {
-  color: #dc3545; /* Rouge pour la fraude */
+  color: #dc3545;
 }
 
 .result .no-fraud {
-  color: #28a745; /* Vert pour non-fraude */
+  color: #28a745;
 }
 
-/* Animation de fade-in */
+/* Animation */
 @keyframes fadeIn {
   to {
     opacity: 1;
@@ -120,14 +109,7 @@ button:hover {
   }
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Header avec effet */
+/* Header */
 .header {
   text-align: center;
   background: rgba(255,255,255,0.8);
@@ -137,17 +119,36 @@ button:hover {
   margin-bottom: 20px;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* ⚡ RESPONSIVE DESIGN */
+@media (max-width: 768px) {
   .container {
-    padding: 25px 20px;
+    padding: 30px 20px;
   }
 
-  button {
+  input, select, button {
     font-size: 16px;
   }
 
-  input, select {
-    font-size: 14px;
+  .container h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 25px 15px;
+  }
+
+  input, select, button {
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+
+  .container h1 {
+    font-size: 20px;
+  }
+
+  .result {
+    font-size: 16px;
   }
 }
