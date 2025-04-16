@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div style={{ padding: "2rem", maxWidth: "600px", margin: "auto" }}>
-      <h1>Détection de Fraude</h1>
+      <h1 className="text-2xl font-bold text-center text-blue-700">Détection de Fraude</h1>
       <form onSubmit={formik.handleSubmit}>
         <label>Type de paiement:</label>
         <select
