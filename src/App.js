@@ -9,7 +9,7 @@ function App() {
   const formik = useFormik({
     initialValues: {
       step: 0.0,
-      type_payment: "Veuillez selectionner",
+      type_payment: "TRANSFER",
       amount: 0.0,
       oldbalanceOrg: 0.0,
       newbalanceOrig: 0.0,
@@ -17,12 +17,12 @@ function App() {
       newbalanceDest: 0.0,
     },
     validationSchema: Yup.object({
-      step: Yup.number().min(0.0).required("Obligatoire"),
-      amount: Yup.number().min(0.0, "Doit être ≥ 0").required("Obligatoire"),
-      oldbalanceOrg: Yup.number().min(0.0).required("Obligatoire"),
-      newbalanceOrig: Yup.number().min(0.0).required("Obligatoire"),
-      oldbalanceDest: Yup.number().min(0.0).required("Obligatoire"),
-      newbalanceDest: Yup.number().min(0.0).required("Obligatoire"),
+      step: Yup.number().min(0).required("Obligatoire"),
+      amount: Yup.number().min(0, "Doit être ≥ 0").required("Obligatoire"),
+      oldbalanceOrg: Yup.number().min(0).required("Obligatoire"),
+      newbalanceOrig: Yup.number().min(0).required("Obligatoire"),
+      oldbalanceDest: Yup.number().min(0).required("Obligatoire"),
+      newbalanceDest: Yup.number().min(0).required("Obligatoire"),
       type_payment: Yup.string().oneOf(["TRANSFER", "CASH_OUT", "CASH_IN", "PAYMENT", "DEBIT"]).required(),
     }),
     onSubmit: async (values) => {
@@ -71,7 +71,7 @@ function App() {
           <option value="DEBIT">Debit</option>
         </select>
 
-        {["type_payement", "step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"].map((field) => (
+        {"step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"].map((field) => (
           <div key={field} style={{ marginTop: "1rem" }}>
             <label style={{ display: "block" }}>{field}:</label>
             <input
