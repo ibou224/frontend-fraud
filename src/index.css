@@ -2,12 +2,12 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f0f4f8, #d9e4f5);
+  background: linear-gradient(135deg, #E2E8F0, #EDF2F7); /* Dégradé léger de bleu clair */
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Empêche le défilement vertical */
+  overflow: hidden;
 }
 
 /* Conteneur principal */
@@ -19,16 +19,6 @@ body {
   width: 90%;
   max-width: 600px;
   animation: fadeIn 0.6s ease-out;
-}
-
-/* Animation pour faire apparaître les champs */
-.container input,
-.container select,
-.container button {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease-out forwards;
-  animation-delay: 0.3s;
 }
 
 /* Titre principal */
@@ -44,25 +34,24 @@ input, select {
   width: 100%;
   padding: 12px 14px;
   margin-top: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #E2E8F0; /* Gris clair pour la bordure */
   border-radius: 10px;
   box-sizing: border-box;
   font-size: 16px;
+  background-color: #F7FAFC; /* Gris très clair */
   transition: all 0.3s ease;
 }
 
 input:focus, select:focus {
-  border-color: #007bff;
+  border-color: #3182CE; /* Bleu vif */
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
-  transition: all 0.3s ease;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
 }
 
 /* Effet sur hover des champs */
 input:hover, select:hover {
-  background-color: #f7fafc;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  background-color: #E2E8F0; /* Gris clair */
+  border-color: #3182CE; /* Bleu vif */
 }
 
 /* Étiquettes */
@@ -75,7 +64,7 @@ label {
 button {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #007bff, #0056b3);
+  background: linear-gradient(135deg, #4299E1, #2B6CB0); /* Dégradé bleu */
   color: white;
   border: none;
   border-radius: 10px;
@@ -84,12 +73,12 @@ button {
   cursor: pointer;
   margin-top: 15px;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0px 4px 15px rgba(0, 123, 255, 0.5);
+  box-shadow: 0px 4px 15px rgba(66, 153, 225, 0.5);
 }
 
 button:hover {
-  background: linear-gradient(135deg, #0056b3, #007bff);
-  box-shadow: 0px 6px 20px rgba(0, 123, 255, 0.8);
+  background: linear-gradient(135deg, #2B6CB0, #4299E1); /* Changement du dégradé au survol */
+  box-shadow: 0px 6px 20px rgba(66, 153, 225, 0.8);
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 }
@@ -116,16 +105,11 @@ button:hover {
 }
 
 .result .fraud {
-  color: #dc3545;
+  color: #dc3545; /* Rouge pour la fraude */
 }
 
 .result .no-fraud {
-  color: #28a745;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  color: #28a745; /* Vert pour non-fraude */
 }
 
 /* Animation de fade-in */
